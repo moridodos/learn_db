@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 1rem;
+      font-family: sans-serif;
+      min-width: 200px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table thead tr {
+      background-color: #009879;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    table th,
+    table td {
+      padding: 12px 15px;
+      border: 1px solid #dddddd;
+    }
+
+    table tbody tr {
+      background-color: #f3f3f3;
+    }
+
+    table tbody tr:nth-of-type(even) {
+      background-color: #e9e9e9;
+    }
+
+    table tbody tr:hover {
+      background-color: #d1f0e1;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #009879;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+  <body>
+    <div style="display: flex">
+      <form action="/insert" method="POST" id="insert">
+        <input type="text" name="name" placeholder="student name" />
+        <input type="text" name="subject" placeholder="subject" />
+        <input
+          style="width: 100px"
+          type="number"
+          name="score"
+          placeholder="0~100"
+          min="0"
+          max="100"
+        />
+        <button type="submit" form="insert">Insert</button>
+      </form>
+      <form action="/drop-table" method="GET" id="dropTable">
+        <input type="text" name="cache" id="cache" value="true" hidden />
+        <button type="submit" form="dropTable" onclick="return confirm('정말 초기화할까요?')">
+          Drop Table
+        </button>
+      </form>
+    </div>
+    <div style="display: flex; gap: 50px">
+      <table>
+        <caption>
+          Joined
+        </caption>
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>과목</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        {{joinedRows}}
+      </table>
+      <table>
+        <caption>
+          students
+        </caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>이름</th>
+          </tr>
+        </thead>
+        {{studentRows}}
+      </table>
+      <table>
+        <caption>
+          subjects
+        </caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>과목</th>
+          </tr>
+        </thead>
+        {{subjectRows}}
+      </table>
+      <table>
+        <caption>
+          scores
+        </caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>student_id</th>
+            <th>subject_id</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        {{scoreRows}}
+      </table>
+    </div>
+  </body>
+</html>
