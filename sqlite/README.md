@@ -4,7 +4,7 @@ Demo Materials for Incoding-Plus
 
 ### how to start
 
-##### SQLite
+#### SQLite
 
-- npm i
-- node --watch ./index.js
+1. npm i
+2. node --watch ./index.js
