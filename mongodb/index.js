@@ -14,7 +14,7 @@ await connectDB();
 // CREATE
 await User.create({ name: '철수', age: 20, email: 'chulsoo@example.com' });
 
-// READ
+// SELECT
 const users = await User.find();
 console.log('📋 Users:', users);
 
