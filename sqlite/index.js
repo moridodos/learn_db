@@ -66,12 +66,20 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
+      // 학생 삽입
       const student = await db.run('INSERT INTO students (name) VALUES (?)', [name]);
-      const subjectRow = await db.run('INSERT INTO subjects (name) VALUES (?)', [subject]);
-
       const studentId = student.lastID;
-      const subjectId = subjectRow.lastID;
 
+      // 과목 ID 조회
+      const subjectRow = await db.get('SELECT id FROM subjects WHERE name = ?', [subject]);
+      if (!subjectRow) {
+        res.writeHead(400);
+        res.end('유효하지 않은 과목입니다.');
+        return;
+      }
+      const subjectId = subjectRow.id;
+
+      // 점수 저장
       await db.run('INSERT INTO scores (student_id, subject_id, score) VALUES (?, ?, ?)', [
         studentId,
         subjectId,

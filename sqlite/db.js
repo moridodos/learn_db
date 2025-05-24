@@ -22,7 +22,7 @@ export default async function initDB() {
 
     CREATE TABLE IF NOT EXISTS subjects (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL
+      name TEXT UNIQUE
     );
 
     CREATE TABLE IF NOT EXISTS scores (
@@ -33,6 +33,15 @@ export default async function initDB() {
       FOREIGN KEY (student_id) REFERENCES students(id),
       FOREIGN KEY (subject_id) REFERENCES subjects(id)
     );
+  `);
+
+  await db.exec(`
+    INSERT OR IGNORE INTO subjects (name) VALUES
+    ('국어'),
+    ('영어'),
+    ('수학'),
+    ('과학'),
+    ('사회');
   `);
 
   return db;

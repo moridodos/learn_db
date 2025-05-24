@@ -6,7 +6,8 @@
     <title>Document</title>
   </head>
   <style>
-    table {
+    table,
+    label {
       border-collapse: collapse;
       margin: 1rem 0;
       font-size: 1rem;
@@ -59,12 +60,28 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+    select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      appearance: none; /* 브라우저 기본 UI 제거 (Chrome/Firefox) */
+      -webkit-appearance: none; /* Safari */
+      -moz-appearance: none; /* Firefox */
+      background-color: white;
+    }
   </style>
   <body>
     <div style="display: flex">
       <form action="/insert" method="POST" id="insert">
         <input type="text" name="name" placeholder="student name" />
-        <input type="text" name="subject" placeholder="subject" />
+        <select name="subject" id="subject" required>
+          <option value="">과목을 선택하세요</option>
+          <option value="국어">국어</option>
+          <option value="영어">영어</option>
+          <option value="수학">수학</option>
+          <option value="과학">과학</option>
+          <option value="사회">사회</option>
+        </select>
         <input
           style="width: 100px"
           type="number"
